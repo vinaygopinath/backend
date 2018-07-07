@@ -11,7 +11,7 @@ Clone this repository with Git (or [download](https://github.com/Syna3C/frontend
 git clone git@github.com:Syna3C/backend.git
 ```
 
-Open the `frontend` directory and install dependencies
+Open the `backend` directory and install dependencies
 ```bash
 npm install
 ```
