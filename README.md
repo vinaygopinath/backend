@@ -1,6 +1,6 @@
 # Syna3C
 
-Syna3C Logistics Coordination Platform, built with React, Grommet, Typescript, Postgres and SASS.
+Syna3C Logistics Coordination Platform, built with React, Node, Express, Grommet, Typescript, Postgres and SASS.
 
 ## Getting Started
 
