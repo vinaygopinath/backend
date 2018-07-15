@@ -1,5 +1,10 @@
 {
-  "watch": ["src"],
+  "watch": [
+    "src"
+  ],
   "ext": "ts",
-  "exec": "ts-node -r tsconfig-paths/register src/index.ts"
+  "exec": "ts-node -r tsconfig-paths/register src/index.ts",
+  "events": {
+    "restart": "tslint -p tsconfig.json && echo \"Lint passed\""
+  }
 }
