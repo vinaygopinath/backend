@@ -1,4 +1,5 @@
-import { config } from '../../config/config';
+// tslint:disable-next-line:no-var-requires
+const config = require('../../config/config')
 import { IEnvConfig } from '../interfaces/IEnvConfig';
 const KNOWN_ENVS = ['local', 'development', 'production'];
 
@@ -16,4 +17,8 @@ if (env === 'production') {
   console.warn('\n\n******\nWARNING: This server is connected to the production database!\n******\n\n');
 }
 
-export const envConfig: IEnvConfig = config[env];
+export const envConfig: IEnvConfig = {
+  jwtSecretKey: process.env.AZURE_JWT_SECRET_KEY || config[env].jwtSecretKey,
+  port: process.env.AZURE_PORT || config[env].port,
+  postgresUri: process.env.AZURE_POSTGRES_URI || config[env].postgresUri
+}
