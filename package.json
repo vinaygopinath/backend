@@ -6,7 +6,10 @@
   "scripts": {
     "server": "nodemon ./dist/src/server.js",
     "prestart": "npm run lint && echo \"Lint passed\"",
-    "start": "tsc && nodemon --exec node ./dist/src/server.js",
+    "start:local": "tsc && nodemon --exec NODE_ENV=local node ./dist/src/server.js",
+    "start:development": "tsc && nodemon --exec NODE_ENV=development node ./dist/src/server.js",
+    "start:production": "tsc && nodemon --exec NODE_ENV=production node ./dist/src/server.js",
+    "start": "npm run start:local",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts",
     "debug": "tsc &&  debug node ./dist/src/server.js",
     "lint": "tslint -p tsconfig.json"
