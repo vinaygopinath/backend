@@ -19,7 +19,7 @@
     "start:development": "NODE_ENV=development node ./dist/src/server.js",
     "start:production": "NODE_ENV=production node ./dist/src/server.js",
     "prestart": "npm run build",
-    "start": "npm run start:development",
+    "start": "node ./dist/src/server.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts",
     "debug": "tsc &&  debug node ./dist/src/server.js",
     "lint": "tslint -p tsconfig.json"
