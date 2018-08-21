@@ -1,9 +1,18 @@
-// tslint:disable-next-line:no-var-requires
-const config = require('../../config/config')
 import { IEnvConfig } from '../interfaces/IEnvConfig';
 const KNOWN_ENVS = ['local', 'development', 'production'];
-
 const env = process.env.NODE_ENV;
+
+let config;
+try {
+  // tslint:disable-next-line:no-var-requires
+  config = require('../../config/config')
+} catch (e) {
+  if (env === 'local') {
+    throw new Error('Environment config file "config/config.ts" is missing!')
+  }
+  config = null;
+}
+
 if (!env) {
   throw new Error('Failed to load environment configuration - NODE_ENV is not defined');
 }

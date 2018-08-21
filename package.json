@@ -12,16 +12,16 @@
     "npm": "6.1.0"
   },
   "scripts": {
-    "serve": "node ./dist/src/server.js",
+    "serve": "node ./dist/server.js",
     "build": "./node_modules/typescript/bin/tsc",
     "prestart:local": "npm run lint && echo \"Lint passed\"",
-    "start:local": "tsc && nodemon --exec NODE_ENV=local node ./dist/src/server.js",
-    "start:development": "NODE_ENV=development node ./dist/src/server.js",
-    "start:production": "NODE_ENV=production node ./dist/src/server.js",
+    "start:local": "tsc && nodemon --exec NODE_ENV=local node ./dist/server.js",
+    "start:development": "NODE_ENV=development node ./dist/server.js",
+    "start:production": "NODE_ENV=production node ./dist/server.js",
     "prestart": "npm run build",
-    "start": "node ./dist/src/server.js",
+    "start": "node ./dist/server.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts",
-    "debug": "tsc &&  debug node ./dist/src/server.js",
+    "debug": "tsc &&  debug node ./dist/server.js",
     "lint": "tslint -p tsconfig.json"
   },
   "author": "",
