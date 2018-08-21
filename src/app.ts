@@ -12,7 +12,7 @@ import { envConfig } from './utils/envConfig'; // Environment-specific configura
 
 export const app = express();
 
-const version = `v${AppConstants.API_VERSION}`;
+const prefix = envConfig.apiPrefix ? `${envConfig.apiPrefix}/v${AppConstants.API_VERSION}` : `v${AppConstants.API_VERSION}`;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -80,11 +80,11 @@ const requireAuth = passport.authenticate('jwt', { session: false })
 // passport middleware. Session is set to false since JWT doesn't require sessions on the server
 const requireSignIn = passport.authenticate('local', { session: false })
 // GET Single User
-app.get(`/api/${version}/users/:id`, UserRouter.getUser);
+app.get(`/${prefix}/users/:id`, UserRouter.getUser);
 // GET All Users
-app.get(`/api/${version}/users`, UserRouter.getAll);
+app.get(`/${prefix}/users`, UserRouter.getAll);
 // SignUp User
-app.post(`/api/${version}/signUp`, UserRouter.signUp)
+app.post(`/${prefix}/signUp`, UserRouter.signUp)
 
 // Events
 
@@ -97,6 +97,6 @@ router.get('/hello-world', (req, res) => res.json({
   message: 'Hello World'
 }));
 // Login User that requires authentication
-router.post(`/api/${version}/login`, requireSignIn, UserRouter.login)
+router.post(`/${prefix}/login`, requireSignIn, UserRouter.login)
 
 app.use('/', router);

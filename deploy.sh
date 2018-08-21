@@ -135,6 +135,7 @@ TSC_CMD=./node_modules/typescript/bin/tsc
 echo "Running tsc --version"
 eval $TSC_CMD --version
 exitWithMessageOnError "tsc --version failed. Is Typescript installed?"
+echo "NODE_ENV is $NODE_ENV"
 echo "Compiling Typescript files"
 eval $TSC_CMD
 exitWithMessageOnError "tsc failed"

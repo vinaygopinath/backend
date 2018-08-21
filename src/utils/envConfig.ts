@@ -5,10 +5,10 @@ const env = process.env.NODE_ENV;
 let config;
 try {
   // tslint:disable-next-line:no-var-requires
-  config = require('../../config/config')
+  config = require('../config').config
 } catch (e) {
   if (env === 'local') {
-    throw new Error('Environment config file "config/config.ts" is missing!')
+    throw new Error('Environment config file "src/config.ts" is missing!')
   }
   config = null;
 }
@@ -27,6 +27,7 @@ if (env === 'production') {
 }
 
 export const envConfig: IEnvConfig = {
+  apiPrefix: env === 'local' ? 'api' : '',
   jwtSecretKey: process.env.AZURE_JWT_SECRET_KEY || config[env].jwtSecretKey,
   port: process.env.PORT || process.env.port || config[env].port,
   postgresUri: process.env.AZURE_POSTGRES_URI || config[env].postgresUri
