@@ -93,6 +93,9 @@ const router = express.Router();
 router.get('/', requireAuth, (req, res) => res.json({
   message: 'Hello World'
 }));
+router.get('/hello-world', (req, res) => res.json({
+  message: 'Hello World'
+}));
 // Login User that requires authentication
 router.post(`/api/${version}/login`, requireSignIn, UserRouter.login)
 
