@@ -28,6 +28,6 @@ if (env === 'production') {
 
 export const envConfig: IEnvConfig = {
   jwtSecretKey: process.env.AZURE_JWT_SECRET_KEY || config[env].jwtSecretKey,
-  port: process.env.AZURE_PORT || config[env].port,
+  port: process.env.PORT || process.env.port || config[env].port,
   postgresUri: process.env.AZURE_POSTGRES_URI || config[env].postgresUri
 }
