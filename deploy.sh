@@ -117,21 +117,28 @@ selectNodeVersion
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
   eval $NPM_CMD config set scripts-prepend-node-path true
+  echo "Running $NPM_CMD --version"
+  eval $NPM_CMD --version
   echo "Running $NPM_CMD install --production"
-  eval $NPM_CMD install --production
+  eval $NPM_CMD install --verbose --production
   # Install devDependencies (required for Typescript compilation)
-  echo "Running $NPM_CMD install install --only=dev"
-  eval $NPM_CMD install --only=dev
+  echo "Running $NPM_CMD install --only=dev"
+  eval $NPM_CMD install --verbose --only=dev
 
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
 
 # 4. Run tsc
-TSC_CMD="$DEPLOYMENT_TARGET/node_modules/typescript/bin/tsc"
+cd "$DEPLOYMENT_TARGET"
+TSC_CMD=./node_modules/typescript/bin/tsc
+echo "Running tsc --version"
+eval $TSC_CMD --version
+exitWithMessageOnError "tsc --version failed. Is Typescript installed?"
 echo "Compiling Typescript files"
 eval $TSC_CMD
 exitWithMessageOnError "tsc failed"
+cd - > /dev/null
 
 ##################################################################################################################################
 echo "Finished successfully."
