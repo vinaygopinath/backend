@@ -106,7 +106,7 @@ touch $DEPLOYMENT_SOURCE/server.js
 
 # 1. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
-  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh;docs"
   exitWithMessageOnError "Kudu Sync failed"
 fi
 
@@ -130,7 +130,7 @@ fi
 # 4. Run tsc
 TSC_CMD="$DEPLOYMENT_TARGET/node_modules/typescript/bin/tsc"
 echo "Compiling Typescript files"
-eval $TSC
+eval $TSC_CMD
 exitWithMessageOnError "tsc failed"
 
 ##################################################################################################################################
