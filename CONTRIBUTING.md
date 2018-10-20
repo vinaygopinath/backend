@@ -24,3 +24,74 @@ Please note that as a volunteer-led effort, Syna3C may not be able to fix bugs o
 
 ## Development
 
+### Tech stack
+
+The backend repository uses:
+* Node.js - Server-side Javascript run-time environment
+* Express - Web-app framework for node.js
+* Postgres - Relational database
+* Typescript - Superset of Javascript that adds static typing
+* Jasmine - Test framework for Javascript
+* npm - Node.js package manager
+
+### Getting started
+
+Syna3C uses [the forking workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow). Please [fork the Syna3C backend repository](https://help.github.com/articles/fork-a-repo/) before you get started.
+
+1. Install
+   - [Node](https://nodejs.org) 8.11+
+   - [npm](https://docs.npmjs.com/troubleshooting/try-the-latest-stable-version-of-npm) 6+
+   - [Git](https://git-scm.com/downloads) installed)
+   - [Postgres](https://www.postgresql.org/download/)
+   - [PostGIS extension for Postgres](http://postgis.net/install/)
+   - (Optional - Postgres GUI) [pgAdmin](https://www.pgadmin.org/download/)
+   - (Optional - REST client for testing endpoint request/response) [Insomnia (open-source)](https://github.com/getinsomnia/insomnia) or [Postman - proprietary](https://www.getpostman.com/)
+2. Clone your newly forked repository locally
+   ```bash
+   git clone git@github.com:<YOUR_GITHUB_USERNAME>/backend.git
+   ```
+3. Open the `backend` folder and install the project dependencies
+   ```bash
+   npm install
+   ```
+4. Familiarize yourself with the commonly used npm commands of the `backend` repo (Full list available in `package.json` under `scripts`)
+   ```bash
+   npm run start:local // Starts a local server for development that watches for changes in the src folder
+   npm test // Runs Jasmine tests
+   npm run build // Generates a dist folder with transpiled JS files
+   ```
+5. Create the Postgres database
+   ```bash
+   psql -f docs/postgres/main.sql
+   ```
+6. Create the configuration file `src/config.ts` with the following content, specifying your Postgres username (most likely `postgres`) under the local configuration. **This file should never be checked into the repository for security reasons**
+   ```typescript
+    import { IEnvConfig } from '../src/interfaces/IEnvConfig';
+    export const config: {
+      development: IEnvConfig,
+      local: IEnvConfig,
+      production: IEnvConfig
+    } = {
+
+      development: {
+        jwtSecretKey: 'key-to-be-used-as-jwt-secret-on-dev-server',
+        port: 80,
+        postgresUri: 'refer-to-azure-for-uri-to-postgres-dev-instance?ssl=true'
+      },
+
+      local: {
+        jwtSecretKey: 'key-to-be-used-as-jwt-secret-on-localhost',
+        port: 4001,
+        postgresUri: 'postgres://YOUR-LOCAL-POSTGRES-USERNAME-HERE:@localhost:5432/s3c_db_dev'
+      },
+
+      production: {
+        jwtSecretKey: 'key-to-be-used-as-jwt-secret-on-prod-server',
+        port: 80,
+        postgresUri: 'refer-to-azure-for-uri-to-postgres-prod-instance?ssl=true'
+      }
+   };
+   ```
+   
+   You're all set!
+   Try running `npm run start:local`. You should see the message `Server started on port 4001`.
