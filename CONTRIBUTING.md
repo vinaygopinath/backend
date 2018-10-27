@@ -95,3 +95,53 @@ Syna3C uses [the forking workflow](https://www.atlassian.com/git/tutorials/compa
    
    You're all set!
    Try running `npm run start:local`. You should see the message `Server started on port 4001`.
+
+### Project structure
+<pre>
+├── dist
+├── node_modules
+├── docs
+    ├── postgres
+├── src
+    ├── interfaces
+    ├── routes
+    ├── services
+    ├── utils
+    ├── <b>app.ts</b>
+    ├── <b>config.ts</b>
+    ├── <b>database.ts</b>
+    ├── <b>server.ts</b>
+├── <b>package.json</b>
+├── <b>CONTRIBUTING.md</b>
+</pre>
+
+* **dist**: Contains the transcompiled Javascript files produced when `npm run build` completes successfully. The contents of the folder can be deployed to a server.
+
+* **node_modules**: The package dependencies of the project are downloaded into this folder when `npm install` is executed. The package dependencies (and versions) are listed in `package.json`
+
+* **docs**: Documentation of the project
+
+* **docs/postgres**: The Postgres SQL scripts that set up the database for the project. `main.sql` refers to the other files in the folder in the right order. Running `main.sql` should suffice to set up the tables and extensions of the project database.
+
+* **src**: The backend source code
+
+* **src/interfaces**: The Typescript interfaces that define the structure of HTTP requests and responses, and the rows in the database.
+
+* **src/routes**: The Express route handlers, grouped by feature or entity. The route handlers perform validation, pass on valid requests to services, and respond to the HTTP request.
+
+* **src/services**: The services are invoked by Express route handlers to perform the action triggered by the HTTP request. These services implement the core functionality of the backend, and must not respond to the HTTP response themselves.
+
+* **src/utils**: Helper methods and constants used by multiple routes handlers and services
+
+* **src/app.ts**: The core of the app that implements login and signup, and redirects other HTTP requests to the appropriate route handlers. Any new endpoints must be registered here.
+
+
+* **src/config.ts**: The environment-specific configuration to be used by the server. Depending on the `NODE_ENV` environment variable, the local, development or production configuration may be used.
+
+* **src/database.ts**: A singleton that initiates a connection to the database.
+
+* **src/server.ts**: The entry point of the backend. Starts an HTTP server.
+
+* **src/package.json**: Lists the packages syna3c-backend depends on. Refer [npm documentation](https://docs.npmjs.com/files/package.json) for more information
+
+* **src/CONTRIBUTING.md** - This file.
