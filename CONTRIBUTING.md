@@ -157,3 +157,6 @@ Syna3C uses [the forking workflow](https://www.atlassian.com/git/tutorials/compa
 7. Open a pull request to the `master` branch of Syna3C/backend. Request a review from one or more core contributors.
 8. A core contributor will review your code and may offer suggestions and request changes. If there are no change requests, your pull request will be merged into `master`.
 9. If you've been requested to make changes and you need additional information, feel free to discuss the changes with the contributor in the comments. If you're unable to make the changes, let the reviewer(s) know with a comment.
+
+#### Further steps
+Read more [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962#keeping-your-fork-up-to-date) on how to keep your forked repository up-to-date with changes on syna3c/backend
