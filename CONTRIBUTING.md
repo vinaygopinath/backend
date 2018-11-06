@@ -145,3 +145,18 @@ Syna3C uses [the forking workflow](https://www.atlassian.com/git/tutorials/compa
 * **src/package.json**: Lists the packages syna3c-backend depends on. Refer [npm documentation](https://docs.npmjs.com/files/package.json) for more information
 
 * **src/CONTRIBUTING.md** - This file.
+
+### Working on an issue
+
+1. Look for [open issues not assigned to anybody](https://github.com/Syna3C/backend/issues?q=is%3Aopen+is%3Aissue+no%3Aassignee) that suit your interests and skills. When you find one you'd like to work on, assign the issue to yourself and leave a comment explaining your approach on solving the issue in the issue thread. Leaving a comment lets others know that someone is working on the issue, and contributors can offer feedback on your approach before you get started writing code.
+2. If you haven't already, fork the backend repo.
+3. Create a branch in your repo (fork the branch from the `master` branch of your repo). While not required, the convention is to prefix the branch name with `feat/` if you're working on a new feature (Feature issues will have the `enhancement` label). Similarly, if the issue you've chosen involves fixing a bug, prefix it with `bugfix/`
+4. Work on the issue - Commit your code frequently when you've addressed a section of the feature/bug.
+5. Write unit tests for your code. If there's no test file matching the file you've modified, create a new `.spec.ts` in the same folder.
+6. Make sure your code follows the lint rules of the project. `npm run lint` should exit silently without any warnings or errors.
+7. Open a pull request to the `master` branch of Syna3C/backend. Request a review from one or more core contributors.
+8. A core contributor will review your code and may offer suggestions and request changes. If there are no change requests, your pull request will be merged into `master`.
+9. If you've been requested to make changes and you need additional information, feel free to discuss the changes with the contributor in the comments. If you're unable to make the changes, let the reviewer(s) know with a comment.
+
+#### Further steps
+Read more [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962#keeping-your-fork-up-to-date) on how to keep your forked repository up-to-date with changes on syna3c/backend
